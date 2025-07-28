@@ -17,7 +17,10 @@
     .hero-overlay {
       background: rgba(0,0,0,0.3);
     }
-   
+   .cart-message {
+      margin-top: 10px;
+      color: green;
+    }
   </style>
 </head>
 <body>
@@ -72,7 +75,7 @@
                  alt="Spaghetti carbonara with fresh parsley garnish on a white plate">
             <span class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold">Gongura chickenBiryani
           </div>
-          <div class="p-6">
+          <div class="product">
             <h3 class="text-xl font-semibold mb-2">Gongura chickenBiryani</h3>
             <p class="text-gray-600 mb-4">Delicious and Spicy.</p>
             <div class="flex items-center justify-between">
@@ -877,6 +880,22 @@
       } else {
         cartMessage.textContent = 'Please select quantity first.';
       }
+    });
+  });
+</script>
+   <script>
+      document.querySelectorAll('.star-rating').forEach(rating => {
+       const stars = rating.querySelectorAll('.star');
+
+         stars.forEach(star => {
+           star.addEventListener('click', () => {
+            const value = star.getAttribute('data-value');
+             rating.setAttribute('data-rating', value);
+
+             stars.forEach(s => {
+               s.textContent = s.getAttribute('data-value') <= value ? '⭐' : '☆';
+        });
+      });
     });
   });
 </script>
