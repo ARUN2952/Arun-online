@@ -80,9 +80,17 @@
                 <ion-icon name="time-outline" class="mr-1"></ion-icon>
                 <span>25 min</span>
               </div>
+              <div class="quantity-controls">
+               <button class="decrease">-</button>
+               <span class="quantity">0</span>
+               <button class="increase">+</button>
+           </div>
               <button class="text-white bg-amber-500 hover:bg-amber-600 px-4 py-2 rounded-full transition">
                 Add to cart
               </button>
+              <div class="cart-message"></div>
+          </div>
+
             </div>
           </div>
         </div>
@@ -833,5 +841,38 @@
       // Mobile menu toggle would go here in a complete implementation
     });
   </script>
+  <script>
+  document.querySelectorAll('.product').forEach(product => {
+    let quantity = 0;
+
+    const quantityDisplay = product.querySelector('.quantity');
+    const increaseBtn = product.querySelector('.increase');
+    const decreaseBtn = product.querySelector('.decrease');
+    const addToCartBtn = product.querySelector('.add-to-cart');
+    const cartMessage = product.querySelector('.cart-message');
+
+    increaseBtn.addEventListener('click', () => {
+      if (quantity < 5) {
+        quantity++;
+        quantityDisplay.textContent = quantity;
+      }
+    });
+
+    decreaseBtn.addEventListener('click', () => {
+      if (quantity > 0) {
+        quantity--;
+        quantityDisplay.textContent = quantity;
+      }
+    });
+
+    addToCartBtn.addEventListener('click', () => {
+      if (quantity > 0) {
+        cartMessage.textContent = "Added to cart!";
+      } else {
+        cartMessage.textContent = 'Please select quantity first.';
+      }
+    });
+  });
+</script>
 </body>
 </html>
